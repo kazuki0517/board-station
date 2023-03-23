@@ -1,0 +1,14 @@
+.homeWrapper {
+ display: flex;
+ flex-direction: column;
+}
+
+.card {
+ height: 30px;
+ /* width: 300px; */
+ margin: 5px 0;
+ background-color: #F4EEFF;
+ display: flex;
+ justify-content: center;
+ align-items: center; 
+}
