@@ -1,18 +1,33 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import "./Header.css";
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+ color: #fff;
+ text-decoration: none;
+ cursor: pointer;
+ font-weight: bold;
+ font-size: 20px;
+ `;
+
+ const StyledNav = styled.nav`
+  height: 50px;
+ padding: 5px 100px;
+ background-color: #146C94;
+ display: flex;
+ justify-content: space-between;
+ align-items: center;
+ `;
 
 const Header = () => {
- const createThread = async () => {
 
- }
- 
  return (
-<nav className='headerNav'>
-<Link to="/" className='toLink'>掲示板</Link>
-<Link to="/thread/new" className='toLink'>スレッドを作成する</Link>
-
-</nav>  )
+<StyledNav>
+<StyledLink to="/">掲示板</StyledLink>
+<StyledLink to="/thread/new" className='toLink'>スレッドを作成する</StyledLink>
+</StyledNav>  
+)
 }
+
 
 export default Header
