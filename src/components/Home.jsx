@@ -27,15 +27,13 @@ const StyledContent = styled.div`
  align-items: center; 
 `
 
-
 const Home = () => {
- const [urlList, setUrlList] = useState([]);
+ const [threadList, setThreadList] = useState([]);
 
  //エラーハンドリング後で実装する
  useEffect(()=> {
 axios.get('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0').then((res)=> {
- setUrlList(res.data);
- console.log("取得");
+ setThreadList(res.data);
 })
  }, [])
 
@@ -43,8 +41,8 @@ axios.get('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?o
 return (
     <StyledList>
       <h2>新着スレッド一覧</h2>
-     {urlList.map((url) => {
-      return <StyledContent key={url.id} className='card'>{url.title}</StyledContent>
+     {threadList.map((thread) => {
+      return <StyledContent key={thread.id} className='card'>{thread.title}</StyledContent>
      })}
     </StyledList>
   )
