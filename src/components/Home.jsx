@@ -30,10 +30,13 @@ const StyledContent = styled.div`
 const Home = () => {
  const [threadList, setThreadList] = useState([]);
 
- //エラーハンドリング後で実装する
  useEffect(()=> {
 axios.get('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0').then((res)=> {
  setThreadList(res.data);
+}).catch((error) => {
+  if(error) {
+    console.log(error.message);
+  }
 })
  }, [])
 
