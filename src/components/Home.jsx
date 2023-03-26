@@ -7,6 +7,7 @@ const StyledList = styled.div`
  flex-direction: column;
  align-items: center;
  background-color: #F6F1F1;
+ padding: 5px 0 40px 0;
 `;
 
 const StyledContent = styled.div`
@@ -15,7 +16,7 @@ const StyledContent = styled.div`
  word-break: break-word;
  min-width: 400px;
  width: auto;
- margin: 5px 0;
+ margin: 5px;
  padding: 5px;
  box-shadow: 0px 0px 12px -5px #777777;
  border-radius: 5px;
