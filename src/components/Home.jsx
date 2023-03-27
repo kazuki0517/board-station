@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 const StyledList = styled.div`
  display: flex;
@@ -30,6 +31,7 @@ const StyledContent = styled.div`
 
 const Home = () => {
  const [threadList, setThreadList] = useState([]);
+ const navigate = useNavigate();
 
  useEffect(()=> {
 axios.get('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?offset=0').then((res)=> {
@@ -46,7 +48,7 @@ return (
     <StyledList>
       <h2>新着スレッド一覧</h2>
      {threadList.map((thread) => {
-      return <StyledContent key={thread.id} className='card'>{thread.title}</StyledContent>
+      return <StyledContent key={thread.id} onClick={()=>navigate(`/thread/${thread.id}`)}>{thread.title}</StyledContent>
      })}
     </StyledList>
   )
