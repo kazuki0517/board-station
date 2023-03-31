@@ -43,7 +43,6 @@ axios.get('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads?o
 })
  }, [])
 
-
 return (
     <StyledList>
       <h2>新着スレッド一覧</h2>
