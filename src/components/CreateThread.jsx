@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import styled from 'styled-components';
+import { useValidate } from '../hooks/useValidate';
 
 const StyledWrapper = styled.div`
   background-color: #F6F1F1;
@@ -54,38 +55,25 @@ const StyledBackButton = styled(StyledButton)`
 
 const CreateThread = () => {
  const [threadName, setThreadName] = useState("");
- const [formError, setFormError] = useState("");
- const [formSuccess, setFormSuccess] = useState("");
  const navigate = useNavigate();
+ const {validate, formError, formSuccess, setFormError, setFormSuccess} = useValidate();
 
  const createNewThread = async () => {
-   setFormError(validate(threadName));
+    validate(threadName);
    await axios.post('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads', {
    title: threadName
   })
   .then((res) => {
-    if(res.status === 200) {
-      setFormSuccess("スレッドを作成しました！")
-    }
+      validate(res)
   }).catch((error)=> {
-    console.log(error);
+    validate(error);
   })
   setThreadName("");
   };
 
- 
-
- const validate = (value) => {
-  let error = "";
-  if(!value) {
-  error = "スレッド名を入力してください！";
-  }
-  return error
- }
-
   return (
     <StyledWrapper>
-      {formError ? <StyledWarning>{formError}</StyledWarning> : ""}
+      {formError ? <StyledWarning>スレッド名を入力してください！</StyledWarning> : ""}
       {formSuccess ? <StyledSuccess>スレッドを作成しました！</StyledSuccess> : ""}
       <h2>スレッド新規作成</h2>
       <StyledInput required value={threadName} type="text" name="name" placeholder="スレッド名を入力" onChange={(e) => setThreadName(e.target.value)} />
