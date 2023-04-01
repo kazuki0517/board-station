@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 const useValidate = () => {
  const [formError, setFormError] = useState(false);
@@ -6,12 +6,15 @@ const useValidate = () => {
 
  const validate = (value) => {
   if(value.status === 200) {
+    setFormError(false);
     setFormSuccess(true);
   } else {
+    setFormSuccess(false);
     setFormError(true);
   }
  }
- return { validate, formError, formSuccess, setFormSuccess, setFormError };
+
+ return { validate,setFormError, setFormSuccess, formError, formSuccess};
 }
 
 export {useValidate};
