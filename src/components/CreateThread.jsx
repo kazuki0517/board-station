@@ -56,15 +56,15 @@ const StyledBackButton = styled(StyledButton)`
 const CreateThread = () => {
  const [threadName, setThreadName] = useState("");
  const navigate = useNavigate();
- const {validate, formError, formSuccess, setFormError, setFormSuccess} = useValidate();
+ const {validate, formError, formSuccess} = useValidate();
 
  const createNewThread = async () => {
-    validate(threadName);
+  validate(threadName);
    await axios.post('https://2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com/threads', {
    title: threadName
   })
   .then((res) => {
-      validate(res)
+    validate(res)
   }).catch((error)=> {
     validate(error);
   })
@@ -78,7 +78,7 @@ const CreateThread = () => {
       <h2>スレッド新規作成</h2>
       <StyledInput required value={threadName} type="text" name="name" placeholder="スレッド名を入力" onChange={(e) => setThreadName(e.target.value)} />
       <StyledButton onClick={createNewThread}>作成</StyledButton>
-      <StyledBackButton onClick={()=> navigate("/")}>ホームへ戻る</StyledBackButton>
+      <StyledBackButton onClick={()=> navigate("/")}>スレッド一覧</StyledBackButton>
     </StyledWrapper>
   )
 }
