@@ -12,7 +12,7 @@ const StyledPostsList = styled.div`
 const StyledSection = styled.section`
 display: flex;
 justify-content: center;
-gap: 50px;
+gap: 200px;
 `;
 
 const StyledWrap = styled.div`
